@@ -3,7 +3,7 @@
 #################
 
 target/
-*.settings
+*.properties
 nb-configuration.xml
 db-config.xml
 
