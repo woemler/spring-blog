@@ -1,0 +1,49 @@
+                
+                <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+</div><!--Body content end-->
+                
+                <c:choose>
+                    <c:when test="${adminFlag}">
+                        <!--Nothing-->
+                    </c:when>
+                    <c:otherwise>
+                        <!--Right Column-->
+                        <div class="col-sm-3 col-xs-12">
+
+                            <h2>Links</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="http://www.google.com">Google</a></li>
+                                <li><a href="http://www.apple.com">Apple</a></li>
+                                <li><a href="http://www.microsoft.com">Microsoft</a></li>
+                            </ul>
+
+                            <h2>More Links</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="http://www.google.com">Google</a></li>
+                                <li><a href="http://www.apple.com">Apple</a></li>
+                                <li><a href="http://www.microsoft.com">Microsoft</a></li>
+                            </ul>
+
+                            <h2>Even More Links</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="http://www.google.com">Google</a></li>
+                                <li><a href="http://www.apple.com">Apple</a></li>
+                                <li><a href="http://www.microsoft.com">Microsoft</a></li>
+                            </ul>
+
+                        </div>
+                    </c:otherwise>
+                
+                </c:choose>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <footer class="text-center text-muted">
+                <p>&copy; Company 2013</p>
+            </footer>
+        </div>
+
+    </body>
+</html>
