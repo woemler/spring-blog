@@ -63,4 +63,10 @@ public class BlogController {
         
         return "blogPost";
     }
+    
+    //About page
+    @RequestMapping(value="/about")
+    public String about(ModelMap map){
+        return "about";
+    }
 }

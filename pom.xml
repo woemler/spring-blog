@@ -159,5 +159,15 @@
             <artifactId>spring-security-web</artifactId>
             <version>3.1.2.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pegdown</groupId>
+            <artifactId>pegdown</artifactId>
+            <version>1.4.1</version>
+        </dependency>
     </dependencies>
 </project>

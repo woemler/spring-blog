@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
 import org.hibernate.Hibernate;
+import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +63,7 @@ public class BlogAdminController {
     public String addPost(@Valid @ModelAttribute BlogPost blogPost, 
             BindingResult result, 
             @RequestParam("tagString") String tagString, 
+            @RequestParam("enablePegdown") boolean enablePegdown,
             Model model, 
             SessionStatus status)
     {
@@ -87,6 +89,11 @@ public class BlogAdminController {
                     }
                     tagSet.add(tagObj);
                 }
+            }
+            
+            //Pegdown
+            if (enablePegdown){
+                blogPost.setMarkup(new PegDownProcessor().markdownToHtml(blogPost.getMarkup()));
             }
             
             blogPost.setPostDate(Calendar.getInstance());
@@ -120,7 +127,13 @@ public class BlogAdminController {
     
     //Update post
     @RequestMapping(value="/admin/blog/{id}", method=RequestMethod.POST)
-    public String savePostChanges(@Valid @ModelAttribute BlogPost blogPost, BindingResult result, @RequestParam("tagString") String tagString, Model model, SessionStatus status){
+    public String savePostChanges(
+            @Valid @ModelAttribute BlogPost blogPost, 
+            BindingResult result, 
+            @RequestParam("tagString") String tagString, 
+            @RequestParam("enablePegdown") boolean enablePegdown,
+            Model model, SessionStatus status)
+    {
         if (result.hasErrors()){
             return "admin/editBlogPost";
         }
@@ -144,6 +157,12 @@ public class BlogAdminController {
                     tagSet.add(tagObj);
                 }
             }
+            
+            //Pegdown
+            if (enablePegdown){
+                blogPost.setMarkup(new PegDownProcessor().markdownToHtml(blogPost.getMarkup()));
+            }
+            
             blogPost.setTags(tagSet);
             blogPost.setPostDate(Calendar.getInstance());
             blogService.updateBlogPost(blogPost);

@@ -40,9 +40,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li id="homeTab"><a href="${contextPath}/">Home</a></li>
-                        <li id="codeTab"><a href="#">Code</a></li>
+                        <li id="codeTab"><a href="${contextPath}/code">Code</a></li>
                         <li id="mediaTab"><a href="#">Media</a></li>
-                        <li id="aboutTab"><a href="#">About</a></li>
+                        <li id="aboutTab"><a href="${contextPath}/about">About</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">
                         <div class="form-group">

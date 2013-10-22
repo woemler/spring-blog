@@ -4,7 +4,7 @@
 <div class="container"><!--Body content start-->
     <div class="row">
         <!--Left Column-->
-        <div class="col-sm-9 col-xs-12">    
+        <div class="col-sm-9 col-md-8 col-xs-12">    
 
             <h2>Add/Edit Blog Post</h2>
 
@@ -14,7 +14,7 @@
                         <!--Title-->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="titleInput">Title</label>
-                            <div class="col-lg-7">
+                            <div div class="col-lg-9">
                                 <form:input id="titleInput" path="title" cssClass="form-control" cssErrorClass="error" maxlength="200" value="${blogPost.title}" onkeypress="updateSlug()" onkeyup="updateSlug()" />                        
                             </div>
                             <form:errors path="title" cssClass="help-inline spring-form-error" element="span" />
@@ -23,7 +23,7 @@
                         <!--Slug-->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="slugInput">Slug</label>
-                            <div class="col-lg-7">
+                            <div class="col-lg-9">
                                 <form:input id="slugInput" path="slug" cssClass="form-control" cssErrorClass="error" maxlength="100" value="${blogPost.slug}" />                        
                             </div>
                             <form:errors path="slug" cssClass="help-inline spring-form-error" element="span" />
@@ -32,7 +32,7 @@
                         <!--Markup-->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="markupInput">Markup</label>
-                            <div class="col-lg-7">
+                            <div class="col-lg-9">
                                 <form:textarea id="markupInput" path="markup" cssClass="form-control" cssErrorClass="error" rows="10" value="${blogPost.markup}" />                        
                             </div>
                             <form:errors path="markup" cssClass="help-inline spring-form-error" element="span" />
@@ -41,7 +41,7 @@
                         <!--Tags-->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="tagInput">Tags</label>
-                            <div class="col-lg-7">
+                            <div class="col-lg-9">
                                 <input id="tagInput" name="tagString" type="text" class="form-control" maxlength="100" value="${tagString}" />                  
                             </div>
                             <form:errors path="tags" cssClass="help-inline spring-form-error" element="span" />
@@ -50,7 +50,7 @@
                         <!--Status-->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="statusSelect">Status</label>
-                            <div class="col-lg-7">
+                            <div class="col-lg-9">
                                 <form:select id="statusSelect" size="1" path="status" cssClass="form-control" value="${blogPost.status}">
                                     <form:option value="draft" label="Draft" />
                                     <form:option value="live" label="Live" />
@@ -60,19 +60,23 @@
                         </div>
 
                         <!--Enable Comments-->
-                        <div class="checkbox">
-                            <label class="control-label col-lg-9" for="enableCommentsCheck">
-                                <form:checkbox id="enableCommentsCheck" path="enableComments" value="${blogPost.enableComments}" />                    
-                                Enable Comments
-                            </label>
-                            <form:errors path="enableComments" cssClass="help-inline spring-form-error" element="span" />
-                        </div>
+                        <label class="checkbox-inline" for="enableCommentsCheck">
+                            <form:checkbox id="enableCommentsCheck" path="enableComments" value="${blogPost.enableComments}" />                    
+                            Enable Comments
+                        </label>
+                        <form:errors path="enableComments" cssClass="help-inline spring-form-error" element="span" />
 
-                        <br/>
+                        <!--Enable Pegdown-->
+                        <label class="checkbox-inline" for="enablePegdownCheck">
+                            <input type="checkbox" id="enablePegdownCheck" name="enablePegdown" checked="checked" />                    
+                            Enable Pegdown
+                        </label>
+                        
+                        <br/><br/>
 
                         <!--Buttons-->
                         <div class="form-group">
-                            <div class="col-lg-offset-2 col-lg-7">
+                            <div class="col-lg-offset-2 col-lg-9">
                                 <button id="submitButton" class="btn btn-default">Save</button>
                                 <a id="resetButton" class="btn btn-default">Reset</a> 
                                 <a id="canceltButton" class="btn btn-default" href="${contextPath}/admin/blog/cancel">Cancel</a> 
@@ -86,8 +90,8 @@
                 
         </div><!--Body content end-->
 
-        <div class="col-sm-3 col-xs-12"><!--Sidebar start-->
-            <blog-tags:adminSidebar />
+        <div class="col-sm-3 col-md-4 col-xs-12"><!--Sidebar start-->
+            <blog-tags:adminBlogEditHelp />
         </div><!--Sidebar end-->
         
     </div>

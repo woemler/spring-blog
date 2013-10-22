@@ -4,12 +4,10 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <p>
-    <div class="well">
-        <a class="btn btn-info btn-block" href="https://github.com/willOEM/spring-blog" target="_blank">
-            <span class="glyphicon glyphicon-cloud-download glyphicon"></span>
-            Fork me on GitHub!
-        </a>
-    </div>
+    <a class="btn btn-info btn-block btn-lg" href="https://github.com/willOEM/spring-blog" target="_blank">
+        <span class="glyphicon glyphicon-cloud-upload glyphicon"></span>
+        Fork me on GitHub!
+    </a>
 </p>
 
 <h2>Links</h2>
