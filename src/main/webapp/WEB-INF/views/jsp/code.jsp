@@ -17,7 +17,7 @@
                             <h4>
                                 <a href="${repo.url}" target="_blank">${repo.title}</a>
                                 <span class="pull-right">
-                                    <a class="btn btn-info" href="${repo.url}/archive/master.zip">
+                                    <a class="btn btn-success" href="${repo.url}/archive/master.zip">
                                         <span class="glyphicon glyphicon-cloud-download"></span> 
                                         Download
                                     </a>

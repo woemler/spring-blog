@@ -23,7 +23,7 @@
                         </tr>
                         <c:forEach items="${postList}" var="post">
                             <tr>
-                                <td>${post.title}</td>
+                                <td><a href="${contextPath}/blog/${post.slug}">${post.title}</a></td>
                                 <td>${post.slug}</td>
                                 <td>${post.printPostDate()}</td>
                                 <td>${post.status}</td>

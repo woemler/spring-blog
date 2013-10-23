@@ -65,7 +65,8 @@ public class BlogDAOImpl implements BlogDAO {
     public Map<String,BlogPost> getBlogPostBySlug(String slug){
         Map<String, BlogPost> requestedPosts = new HashMap();
         List<BlogPost> posts = getCurrentSession()
-                .createQuery("from BlogPost p where p.status = 'live' order by p.postDate desc")
+                //.createQuery("from BlogPost p where p.status = 'live' order by p.postDate desc")
+                .createQuery("from BlogPost p order by p.postDate desc")
                 .list();
         
         for (int i=0; i<posts.size(); i=i+1){

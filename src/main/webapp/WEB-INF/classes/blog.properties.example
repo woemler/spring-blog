@@ -3,3 +3,9 @@ jdbc.driverClassName=com.mysql.jdbc.Driver
 jdbc.url=jdbc:mysql://localhost:3306/springblog
 jdbc.username=username
 jdbc.password=password
+
+#GutHub
+github.username=username
+
+#Google Analytics
+google.analytics.webPropertyId=UA-XXXX-Y

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-sm-2 col-md-3"></div>
+        <div class="col-sm-8 col-md-6">
             <div class="well well-lg">
                 <form id="loginForm" name="f" action="<c:url value='j_spring_security_check' />" method="POST">
                     <h2>Login</h2>
@@ -16,7 +16,7 @@
                         <input id="passwordInput" class="form-control" name="j_password" type="password" />
                     </div>
                         
-                    <a id="submitButton" class="btn btn-primary">Login</a>
+                    <button type="submit" id="submitButton" class="btn btn-primary">Login</button>
                     <a id="cancelButton" href="${contextPath}/" class="btn btn-danger">Cancel</a>
                     
                     <c:if test="${not empty error}">
@@ -40,7 +40,7 @@
                     
                 </form>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-sm-2 col-md-3"></div>
     </div>
 </div>
 
@@ -52,10 +52,11 @@
         $("#usernameInput").focus();
         
         //Submit
+        /*
         $("#submitButton").on("click", function(){
            $('#loginForm').submit();
         });
-        
+        */
     });
     
 </script>
