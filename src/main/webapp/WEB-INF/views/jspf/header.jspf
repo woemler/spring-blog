@@ -78,17 +78,21 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <div class="page-header">
+                <!--<div class="page-header">-->
                     <c:choose>
                         <c:when test="${adminFlag}">
-                            <h1>Site Administration</h1>
+                            <div class="page-header">
+                              <h1>Site Administration</h1>
+                            </div>
                         </c:when>
                         <c:otherwise>
-                            <h1>Spring Site Example <small>Built with with Spring MVC</small></h1>
+                            <img src="${contextPath}/resources/img/logo.jpg" />
+                            <p><span class="pull-right text-muted">Fun on and off the internets.</span></P>
+                            <!--<h1>Spring Site Example <small>Built with with Spring MVC</small></h1>-->
                         </c:otherwise>
                     </c:choose>
                     
-                </div>
+                <!--</div>-->
             </div>
         </div>
 

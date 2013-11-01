@@ -1,6 +1,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
 
+<link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.css" />" type="text/css" />
+<link rel="stylesheet" href="<c:url value="/resources/css/jquery.tagit.css" />" type="text/css" />
+
 <div class="container"><!--Body content start-->
     <div class="row">
         <!--Left Column-->
@@ -42,7 +45,8 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="tagInput">Tags</label>
                             <div class="col-lg-9">
-                                <input id="tagInput" name="tagString" type="text" class="form-control" maxlength="100" value="${tagString}" />                  
+                                <input id="tagInputHidden" name="tagString" type="text" class="form-control" value="${tagString}" style="display:none" />
+                                <ul id="tagInput" class="tag-input-control"></ul>
                             </div>
                             <form:errors path="tags" cssClass="help-inline spring-form-error" element="span" />
                         </div>
@@ -97,21 +101,71 @@
     </div>
 </div>
 
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/tag-it.min.js" />"></script>
+
 <script type="text/javascript">
             
     function updateSlug(){
         $("#slugInput").val($("#titleInput").val().replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s+/g, "-").toLowerCase()); 
     }
+    
+    $(function(){
+        ////Tag-It Controls start////
+        $("#tagInput").tagit({
+            placeholderText: "eg. Type your tags here...",
+            autocomplete: {
+                source: function(request, response){
+                    $.ajax({
+                        type: 'POST',
+                        url: '${contextPath}/admin/tags/autocomplete',
+                        data: "fragment=" + $("#tagInput input:last").val(), //takes the input from the last input to use for autocompletion
+                        dataType: "json"
+                    }).done(function(data){
+                        response(data);
+                    }).error(function(x, status, e){
+                        response([]);
+                        alert(x.responseText);
+                    });
+                },
+                minLength: 1
+            }
+        });
+
+        //Add class to tag input element to make it fit screen
+        $(".tag-input-control input").width("500px");
+
+        //Remove placeholder text for input control
+        $(".tag-input-control input").on("keydown", function(){
+            $(this).removeAttr("placeholder");
+            $(this).width("150px");
+        });
+        
+        //Populate the tag input with preexisting tags
+        var existingTags = $("#tagInputHidden").val().split(" ");
+        for (var i=0; i<existingTags.length; i++){
+            $("#tagInput").tagit("createTag", existingTags[i]);
+            $(".tag-input-control input").removeAttr("placeholder").width("150px");
+        }
+        
+        ////Tag-It controls end////
+    });
 
     $(document).ready(function(){
 
         //Auto-generate slug
         //$("#titleInput").on("keypress", function(){updateSlug()});
         //$("#titleInput").on("keyup", function(){updateSlug()});
+        
 
 
         //Submit button
         $('#submitButton').on("click", function(){
+            var assignedTags = $("#tagInput").tagit("assignedTags");
+            $("#tagInputHidden").val(assignedTags);
+            $(".tagit-hidden-field").each(function(){
+                $(this).removeAttr("name"); //Eliminates conflict between tag field name and model field
+            });
             $('#blogPostForm').submit(); 
         });
 
@@ -129,7 +183,7 @@
            alert("Abort!"); 
         });
 
-        $('.spring-form-error').closest("div .control-group").addClass('error');
+        $('.spring-form-error').closest("div .form-group").addClass('error');
 
     });
 </script>  

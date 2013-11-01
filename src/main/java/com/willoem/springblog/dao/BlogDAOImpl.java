@@ -1,7 +1,10 @@
 
 package com.willoem.springblog.dao;
 
+import com.google.gson.Gson;
 import com.willoem.springblog.models.BlogPost;
+import com.willoem.springblog.models.Tag;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -118,5 +121,25 @@ public class BlogDAOImpl implements BlogDAO {
     @Override
     public void deleteBlogPost(Integer postId){
         getCurrentSession().delete(this.getBlogPostById(postId));
+    }
+    
+    @Override
+    public String getTagAutocompleteJson(String fragment){
+        List<Tag> results = getCurrentSession()
+                .createQuery("from Tag t where t.tagName like :fragment order by t.tagName")
+                .setParameter("fragment", "%"+fragment+"%")
+                .list();
+        List<String> tags = new ArrayList();
+       
+        if (results.isEmpty()){
+            //pass
+        }
+        else {
+            for (Tag tag: results){
+                tags.add(tag.getTagName());
+            }
+        }
+        Gson gson = new Gson();
+        return gson.toJson(tags);
     }
 }

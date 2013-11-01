@@ -16,4 +16,5 @@ public interface BlogService {
     void saveBlogPost(BlogPost post);
     void updateBlogPost(BlogPost post);
     void deleteBlogPost(Integer postId);
+    String getTagAutocompleteJson(String fragment);
 }

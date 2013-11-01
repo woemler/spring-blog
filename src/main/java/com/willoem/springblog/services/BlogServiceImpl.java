@@ -57,4 +57,9 @@ public class BlogServiceImpl implements BlogService {
         blogDao.deleteBlogPost(postId);
     }
     
+    @Override
+    public String getTagAutocompleteJson(String fragment){
+        return blogDao.getTagAutocompleteJson(fragment);
+    }
+    
 }

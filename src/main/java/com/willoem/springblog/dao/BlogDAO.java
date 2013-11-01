@@ -16,5 +16,6 @@ public interface BlogDAO {
     void saveBlogPost(BlogPost post);
     void updateBlogPost(BlogPost post);
     void deleteBlogPost(Integer postId);
+    String getTagAutocompleteJson(String fragment);
     
 }

@@ -4,6 +4,7 @@ import com.willoem.springblog.models.BlogPost;
 import com.willoem.springblog.models.Tag;
 import com.willoem.springblog.services.BlogService;
 import com.willoem.springblog.services.TagService;
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
@@ -62,7 +63,7 @@ public class BlogAdminController {
     @RequestMapping(value="/admin/blog/new", method=RequestMethod.POST)
     public String addPost(@Valid @ModelAttribute BlogPost blogPost, 
             BindingResult result, 
-            @RequestParam("tagString") String tagString, 
+            @RequestParam(value="tagString", defaultValue="") String tagString, 
             @RequestParam("enablePegdown") boolean enablePegdown,
             Model model, 
             SessionStatus status)
@@ -73,8 +74,8 @@ public class BlogAdminController {
         else {
             Set<Tag> tagSet = new HashSet();
             
-            for (String tag: tagString.split(" ")){
-                
+            for (String tag: tagString.split(",")){
+                tag = tag.replaceAll("\\s+", "");
                 if (tag.equals("") || tag == null){
                     //pass
                 }
@@ -130,7 +131,7 @@ public class BlogAdminController {
     public String savePostChanges(
             @Valid @ModelAttribute BlogPost blogPost, 
             BindingResult result, 
-            @RequestParam("tagString") String tagString, 
+            @RequestParam(value="tagString", defaultValue="") String tagString, 
             @RequestParam("enablePegdown") boolean enablePegdown,
             Model model, SessionStatus status)
     {
@@ -140,8 +141,8 @@ public class BlogAdminController {
         else {
             Set<Tag> tagSet = new HashSet();
             
-            for (String tag: tagString.split(" ")){
-                
+            for (String tag: tagString.split(",")){
+                tag = tag.replaceAll("\\s+", "");
                 if (tag.equals("") || tag == null){
                     //pass
                 }
@@ -182,10 +183,26 @@ public class BlogAdminController {
         return "The item was deleted succesfully";
     }
     
+    //Cancel post edit
     @RequestMapping(value="/admin/blog/cancel", method=RequestMethod.GET)
     public String cancelBlogEdit(SessionStatus status){
         status.setComplete();
         return "redirect:/admin/blog";
     }
     
+    //AJAX event for autocomplete
+    @RequestMapping(value="/admin/tags/autocomplete", method=RequestMethod.POST)
+    public @ResponseBody String tagsAutocomplete(@RequestParam("fragment") String fragment) 
+            throws UnsupportedEncodingException
+    {
+        String json = "";
+        if (fragment.isEmpty()){
+                //pass
+        }
+        else {
+           json = blogService.getTagAutocompleteJson(fragment);
+        }
+
+        return json;
+    }
 }
