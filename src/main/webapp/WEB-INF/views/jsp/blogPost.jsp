@@ -46,7 +46,7 @@
                     <c:when test="${requestedPost.enableComments == true}">
                        <p id="${requestedPost.slug}-comments" class="blog-comments">
                             <h3>Comments</h3>
-                            Comments will go here.
+                            <blog-tags:disqusComments />
                         </p> 
                     </c:when>
                 </c:choose>

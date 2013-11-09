@@ -27,7 +27,9 @@ public class MediaController {
         List<String> images = new ArrayList();
 
         for (String file: Arrays.asList(new File(staticPath).list())){
-            images.add(contextPath + staticDir + file);
+            if (file.matches("[a-zA-Z0-9._-]+\\.(jpg|png|gif|svg)$")){
+                images.add(contextPath + staticDir + file);
+            }
         }
         map.addAttribute("images", images);
 

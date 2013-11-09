@@ -9,3 +9,4 @@ github.username=username
 
 #Google Analytics
 google.analytics.webPropertyId=UA-XXXX-Y
+google.analytics.siteName=sitename.com

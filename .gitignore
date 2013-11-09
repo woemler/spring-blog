@@ -5,6 +5,10 @@
 target/
 *.jpg
 *.properties
+blogSidebar.tag
+footer.jspf
+header.jspf
+disqusComments.tag
 nb-configuration.xml
 db-config.xml
 

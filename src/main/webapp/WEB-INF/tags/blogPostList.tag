@@ -26,7 +26,7 @@
                             <div class="pull-right">
                                 <c:choose>
                                     <c:when test="${post.enableComments == true}">
-                                        <a href="${contextPath}/blog/${post.slug}#comments"><span class="glyphicon glyphicon-comment"></span>&nbsp;0</a>
+                                        <a><span class="glyphicon glyphicon-comment"></span></a>&nbsp;<a href="${contextPath}/blog/${post.slug}#disqus_thread">Comments</a>
                                         &nbsp;&nbsp;
                                     </c:when>
                                 </c:choose>
@@ -39,6 +39,18 @@
                 </c:when>
             </c:choose>
         </c:forEach>
+                    
+        <script type="text/javascript">
+            var disqus_shortname = 'thirdfloorbears'; // required: replace example with your forum shortname
+
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+        </script>
+                    
     </c:when>
     <c:otherwise>
         <h2>No posts to display.</h2>

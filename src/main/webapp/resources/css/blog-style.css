@@ -22,6 +22,17 @@ body {
     color: #cccccc
 }
 
+.page-header-subtitle{
+    color: #cccccc;
+    font-family:'Consolas';
+    font-size: 0.8em;
+}
+
+.navbar-brand{
+    font-family:'Consolas' !important;
+    color:#cc4800 !important;
+}
+
 .blog-post {
     
 }
