@@ -7,6 +7,15 @@ body {
     border: none;
 }
 
+.navbar-inverse{
+    /*background-color:#222;*/
+    background-color:#080808;
+}
+
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>.active>a:focus{
+    background-color:#222;
+}
+
 .jumbotron {
     background-color: #333;
     padding-top:10px;

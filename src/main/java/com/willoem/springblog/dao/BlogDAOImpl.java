@@ -23,6 +23,7 @@ public class BlogDAOImpl implements BlogDAO {
         return sessionFactory.getCurrentSession();
     }
     
+    //Get every blog post in order by date
     @Override
     public List<BlogPost> getAllBlogPosts(){
         return getCurrentSession()
@@ -30,11 +31,12 @@ public class BlogDAOImpl implements BlogDAO {
                 .list();
     }
     
+    //Get live blog posts by page, sorted by date
     @Override
     public Map<String,Object> getBlogPostsByPage(Integer page){
         
         Map<String,Object> pageData = new HashMap();
-        Integer postsPerPage = 8; //Determines page size
+        Integer postsPerPage = 10; //Determines page size
         
         Integer postCount = ((Long) getCurrentSession()
                 .createQuery("select count(post_id) from BlogPost where status = 'live'")
@@ -47,6 +49,7 @@ public class BlogDAOImpl implements BlogDAO {
                 .setMaxResults(postsPerPage)
                 .setFirstResult((postsPerPage * page) - postsPerPage)
                 .list();
+        
         pageData.put("blogPosts", blogPosts);
         
         //Integer numPages = (int) Math.ceil(postCount/postsPerPage);
@@ -56,6 +59,7 @@ public class BlogDAOImpl implements BlogDAO {
         return pageData;
     }
     
+    //Get count of all blog posts
     @Override
     public Integer getBlogPostCount(){
         return ((Long) getCurrentSession()
@@ -64,6 +68,7 @@ public class BlogDAOImpl implements BlogDAO {
                 .intValue();
     }
     
+    //Get blog post by slug
     @Override
     public Map<String,BlogPost> getBlogPostBySlug(String slug){
         Map<String, BlogPost> requestedPosts = new HashMap();
@@ -99,6 +104,7 @@ public class BlogDAOImpl implements BlogDAO {
         return requestedPosts;
     }
     
+    //Get blog post by ID
     @Override
     public BlogPost getBlogPostById(Integer postId){
         return (BlogPost) getCurrentSession()
@@ -123,6 +129,7 @@ public class BlogDAOImpl implements BlogDAO {
         getCurrentSession().delete(this.getBlogPostById(postId));
     }
     
+    //Get tags for autocomplete
     @Override
     public String getTagAutocompleteJson(String fragment){
         List<Tag> results = getCurrentSession()

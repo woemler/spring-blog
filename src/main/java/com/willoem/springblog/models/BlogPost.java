@@ -150,4 +150,14 @@ public class BlogPost implements Serializable {
         }
         return tagList;
     }
+    
+    //Return the first paragraph of a blog post
+    public String getPostPreview(){
+        String[] paragraphs = this.getMarkup().split("</p>");
+        String paragraph = paragraphs[0] + "</p>";
+        if (paragraphs.length>1){
+            paragraph = paragraph + "<p><em>More...</em></p>";
+        }
+        return paragraph;
+    }
 }
