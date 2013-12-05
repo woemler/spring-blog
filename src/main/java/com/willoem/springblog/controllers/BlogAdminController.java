@@ -64,7 +64,7 @@ public class BlogAdminController {
     public String addPost(@Valid @ModelAttribute BlogPost blogPost, 
             BindingResult result, 
             @RequestParam(value="tagString", defaultValue="") String tagString, 
-            @RequestParam("enablePegdown") boolean enablePegdown,
+            @RequestParam(value="enablePegdown", required=false) boolean enablePegdown,
             Model model, 
             SessionStatus status)
     {

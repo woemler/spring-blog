@@ -14,8 +14,10 @@
                 <c:when test="${post.status == 'live'}">
                     <div id="${post.slug}-block" class="blog-post">
                         <h2 id="${post.slug}-title" class="blog-title"><a href="${contextPath}/blog/${post.slug}">${post.title}</a></h2>
-                        <p id="${post.slug}-date" class="blog-date text-muted">${post.printPostDate()}</p>
-                        <p id="${post.slug}-markup" class="blog-markup">${post.markup}</p>
+                        <p id="${post.slug}-date" class="blog-date text-muted">${post.printPostDate()} GMT</p>
+                        
+                        <p id="${post.slug}-markup" class="blog-markup">${post.getPostPreview()}</p></p>
+                        
                         <div id="${post.slug}-footer" class="blog-footer well">
                             <div class="pull-left">
                                 Tags:&nbsp;

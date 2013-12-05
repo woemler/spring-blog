@@ -16,12 +16,15 @@
                         authentication-failure-url="/loginfailed" />
             <logout logout-success-url="/logout"/>
 	</http>
+        
+        <beans:bean id='bCryptPasswordEncoder' class='org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'/>
  
 	<authentication-manager>
 	  <authentication-provider>
-	    <user-service>
-		<user name="admin" password="admin" authorities="ROLE_ADMIN" /><!--need to add encryption-->
-	    </user-service>
+              <password-encoder ref="bCryptPasswordEncoder"/>
+                <user-service>
+                    <user name="admin" password="***your hashed password here***" authorities="ROLE_ADMIN" />
+                </user-service>
 	  </authentication-provider>
 	</authentication-manager>
  

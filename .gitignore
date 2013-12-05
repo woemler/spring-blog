@@ -4,14 +4,15 @@
 
 target/
 *.jpg
+*.png
 *.properties
-blogSidebar.tag
-footer.jspf
-header.jspf
-spring-security.xml
-disqusComments.tag
+**/blogSidebar.tag
+**/footer.jspf
+**/header.jspf
+**/spring-security.xml
+**/disqusComments.tag
 nb-configuration.xml
-db-config.xml
+**/db-config.xml
 
 
 #################

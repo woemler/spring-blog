@@ -12,7 +12,7 @@
             <!--Post content-->
             <div id="${requestedPost.slug}-block" class="blog-post">
                 <h2 id="${requestedPost.slug}-title" class="blog-title">${requestedPost.title}</h2>
-                <p id="${requestedPost.slug}-date" class="blog-date text-muted">${requestedPost.printPostDate()}</p>
+                <p id="${requestedPost.slug}-date" class="blog-date text-muted">${requestedPost.printPostDate()} GMT</p>
                 <p id="${requestedPost.slug}-tags" class="blog-tags">
                     Tags:&nbsp;
                     <c:forEach items="${postTags}" var="tag">
