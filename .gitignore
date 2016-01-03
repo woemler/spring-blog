@@ -3,17 +3,12 @@
 #################
 
 target/
-*.jpg
-*.png
-*.properties
-**/blogSidebar.tag
-**/footer.jspf
-**/header.jspf
-**/spring-security.xml
-**/disqusComments.tag
-nb-configuration.xml
-**/db-config.xml
 
+#################
+## IntelliJ
+#################
+*.iml
+.idea
 
 #################
 ## Eclipse
