@@ -1,66 +1,34 @@
 
 package me.woemler.springblog.models;
 
-import org.hibernate.Hibernate;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@Entity
-@Table(name="BLOG_POST")
-public class BlogPost implements Serializable {
+@Document(collection = "blog_posts")
+public class BlogPost {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="POST_ID")
-    private Integer postId;
-    
-    @NotNull
-    @NotEmpty
-    @Size(min=1, max=200)
-    @Column(name="TITLE")
-    private String title;
-    
-    @NotNull
-    @NotEmpty
-    @Size(min=1, max=100)
-    @Column(name="SLUG", unique=true)
-    private String slug;
-    
-    @NotNull
-    @NotEmpty
-    @Column(name="MARKUP")
-    @Lob
-    private String markup;
-    
-    @Column(name="POST_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date postDate; 
-    
-    @Column(name="STATUS")
-    @Size(min=1, max=10)
-    private String status;
-    
-    @Column(name="ENABLE_COMMENTS")
-    private boolean enableComments;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="BLOG_POST_TAGS", 
-            joinColumns={@JoinColumn(name="POST_ID")},
-            inverseJoinColumns={@JoinColumn(name="TAG_ID")})
-    private Set<Tag> tags;
-
+    @Id private String postId;
+    @NotNull private String title;
+    @NotNull @Indexed(unique = true) private String slug;
+    @NotNull private String markup;
+    private Date postDate = new Date();
+    private String status = BlogPost.STATUS_INACTIVE;
+    private boolean enableComments = false;
+    private Set<String> tags = new HashSet<>();
 
     public BlogPost() { }
 
-    public BlogPost(String title, String slug, String markup, Date postDate,
-        String status, boolean enableComments, Set<Tag> tags) {
+    @PersistenceConstructor
+    public BlogPost(String postId, String title, String slug, String markup, Date postDate,
+        String status, boolean enableComments, Set<String> tags) {
+        this.postId = postId;
         this.title = title;
         this.slug = slug;
         this.markup = markup;
@@ -70,11 +38,11 @@ public class BlogPost implements Serializable {
         this.tags = tags;
     }
 
-    public Integer getPostId() {
+    public String getPostId() {
         return postId;
     }
 
-    public void setPostId(Integer postId) {
+    public void setPostId(String postId) {
         this.postId = postId;
     }
 
@@ -126,27 +94,21 @@ public class BlogPost implements Serializable {
         this.enableComments = enableComments;
     }
 
-    public Set<Tag> getTags() {
+    public Set<String> getTags() {
         return tags;
     }
 
-    public void setTags(Set<Tag> tags) {
+    public void setTags(Set<String> tags) {
         this.tags = tags;
     }
-    
+
     public String printPostDate(){
         DateFormat df = new SimpleDateFormat("MMM d yyyy hh:mm aaa");
         return df.format(this.postDate.getTime());
     }
     
     public List<String> getTagList(){
-        Hibernate.initialize(this.getTags());
-        Set<Tag> tags = this.getTags();
-        List<String> tagList = new ArrayList();
-        for (Tag tag: tags){
-            tagList.add(tag.getTagName());
-        }
-        return tagList;
+        return new ArrayList<>(tags);
     }
     
     //Return the first paragraph of a blog post
@@ -164,13 +126,14 @@ public class BlogPost implements Serializable {
 
     @Override public String toString() {
         return "BlogPost{" +
-            "postId=" + postId +
+            "postId='" + postId + '\'' +
             ", title='" + title + '\'' +
             ", slug='" + slug + '\'' +
             ", markup='" + markup + '\'' +
             ", postDate=" + postDate +
             ", status='" + status + '\'' +
             ", enableComments=" + enableComments +
+            ", tags=" + tags +
             '}';
     }
 }

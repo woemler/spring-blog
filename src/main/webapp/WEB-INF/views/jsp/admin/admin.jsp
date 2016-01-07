@@ -1,4 +1,7 @@
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<blog-tags:header />
 
 <div class="container"><!--Body content start-->
     <div class="row">
@@ -23,7 +26,7 @@
                     <a href="${contextPath}/admin/tags">Tags</a>
                     <div class="pull-right">
                         <span class="badge">${tagCount}</span>
-                        <a href="${contextPath}/admin/tags/new" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i></a>
+                        <!--<a href="${contextPath}/admin/tags/new" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i></a>-->
                     </div>
                 </li>
 
@@ -37,3 +40,5 @@
         
     </div>
 </div>
+
+<blog-tags:footer />

@@ -1,4 +1,7 @@
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<blog-tags:header />
 
 <div class="container"><!--Body content start-->
     <div class="row">
@@ -7,7 +10,7 @@
 
             <h2>Tag: ${tag.tagName}</h2>
 
-            <blog-tags:blogPostList blogPosts="${blogPosts}" tagMap="${tagMap}" />
+            <blog-tags:blogPostList blogPosts="${blogPosts}" />
 
         </div><!--Body content end-->
 
@@ -17,3 +20,5 @@
         
     </div>
 </div>
+
+<blog-tags:footer />

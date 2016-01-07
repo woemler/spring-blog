@@ -21,7 +21,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @EnableHypermediaSupport(type = { EnableHypermediaSupport.HypermediaType.HAL })
 @EnableEntityLinks
-@ComponentScan(basePackages = { "me.woemler.springblog.controllers" })
+@ComponentScan(basePackages = { "me.woemler.springblog.controllers", "me.woemler.springblog.services" })
 @EnableSpringDataWebSupport
 public class TestWebAppConfig extends WebMvcConfigurerAdapter {
 

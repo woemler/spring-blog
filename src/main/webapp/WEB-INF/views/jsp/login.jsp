@@ -1,3 +1,8 @@
+<%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<blog-tags:header />
+
 <div class="container">
     <div class="row">
         <div class="col-sm-2 col-md-3"></div>
@@ -60,3 +65,5 @@
     });
     
 </script>
+    
+<blog-tags:footer />

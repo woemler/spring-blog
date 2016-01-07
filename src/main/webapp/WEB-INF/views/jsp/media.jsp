@@ -1,4 +1,8 @@
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<blog-tags:header />
+
 <script type="text/javascript">
     $("#mediaTab").addClass("active");
 </script>
@@ -29,3 +33,5 @@
         </div><!--Sidebar end-->
     </div>
 </div>
+
+<blog-tags:footer />

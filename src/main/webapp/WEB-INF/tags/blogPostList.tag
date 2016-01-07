@@ -1,11 +1,10 @@
 <%@tag description="Creates a list of blog post summaries" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%@ attribute name="blogPosts" required="true" type="java.util.ArrayList" description="List of blog post objects" %>
-<%@ attribute name="tagMap" required="true" type="java.util.HashMap" description="Map of tags for each post" %>
-
 
 <c:choose>
     <c:when test="${fn:length(blogPosts) > 0}">
@@ -21,8 +20,8 @@
                         <div id="${post.slug}-footer" class="blog-footer well">
                             <div class="pull-left">
                                 Tags:&nbsp;
-                            <c:forEach items="${tagMap.get(post.postId)}" var="tag">
-                                <a href="${contextPath}/tags/${tag.tagName}">${tag.tagName}</a>&nbsp;
+                            <c:forEach items="${post.tags}" var="tag">
+                                <a href="${contextPath}/tags/${tag}">${tag}</a>&nbsp;
                             </c:forEach>
                             </div>
                             <div class="pull-right">
@@ -43,7 +42,7 @@
         </c:forEach>
                     
         <script type="text/javascript">
-            var disqus_shortname = 'thirdfloorbears'; // required: replace example with your forum shortname
+            var disqus_shortname = '<spring:eval expression="@environment.getProperty('disqus.shortname')" />'; 
 
             (function () {
                 var s = document.createElement('script'); s.async = true;

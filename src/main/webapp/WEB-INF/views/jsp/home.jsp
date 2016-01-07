@@ -1,4 +1,10 @@
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<blog-tags:header />
+
 <script type="text/javascript">
     $("#homeTab").addClass("active");
     
@@ -10,7 +16,7 @@
         <div class="col-sm-9 col-xs-12">
 
             <!--Page Content Start-->
-            <blog-tags:blogPostList blogPosts="${blogPosts}" tagMap="${tagMap}" />
+            <blog-tags:blogPostList blogPosts="${blogPosts}" />
 
 
             <div class="text-center"> <!--Pagination Start-->
@@ -59,3 +65,4 @@
     </div>
 </div>
 
+<blog-tags:footer />

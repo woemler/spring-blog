@@ -1,4 +1,7 @@
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<blog-tags:header />
 
 <div class="container"><!--Body content start-->
     <div class="row">
@@ -24,3 +27,5 @@
         
     </div>
 </div>
+
+<blog-tags:header />

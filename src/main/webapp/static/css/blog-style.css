@@ -22,7 +22,7 @@ body {
     padding-bottom:10px
 }
 
-.page-header {
+.page-header, .page-header h2 {
     border: none;
     color: #f5f5f5;
 }

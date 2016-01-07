@@ -1,5 +1,7 @@
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
 
+<blog-tags:header />
+
 <script type="text/javascript">
     $("#homeTab").addClass("active");   
 </script>
@@ -61,3 +63,5 @@
         
     </div>
 </div>
+
+<blog-tags:footer />

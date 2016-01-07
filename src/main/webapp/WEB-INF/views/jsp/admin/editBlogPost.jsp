@@ -1,8 +1,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.css" />" type="text/css" />
-<link rel="stylesheet" href="<c:url value="/resources/css/jquery.tagit.css" />" type="text/css" />
+<blog-tags:header />
+
+<link rel="stylesheet" href="<c:url value="${contextPath}/static/css/jquery-ui.css" />" type="text/css" />
+<link rel="stylesheet" href="<c:url value="${contextPath}/static/css/jquery.tagit.css" />" type="text/css" />
 
 <div class="container"><!--Body content start-->
     <div class="row">
@@ -101,8 +104,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/tag-it.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="${contextPath}/static/js/jquery-ui.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="${contextPath}/static/js/tag-it.min.js" />"></script>
 
 <script type="text/javascript">
             
@@ -187,3 +190,5 @@
 
     });
 </script>  
+
+<blog-tags:footer />
