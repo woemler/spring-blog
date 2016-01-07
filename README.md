@@ -1,7 +1,7 @@
 Spring-Blog
 ===========
 
-A generic blog application built using Spring MVC 3, Hibernate 4 and Bootstrap 3.  Featuring...
+A generic blog application built using Spring Boot, MongoDB, and Bootstrap 3.  Featuring...
 
 - An admin page for creating and managing blog posts.
 - GitHub integration for sharing projects.
