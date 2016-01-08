@@ -1,6 +1,8 @@
 
 package me.woemler.springblog.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +22,8 @@ import java.util.List;
 
 @Controller
 public class MediaController {
+
+    private static Logger logger  = LoggerFactory.getLogger(MediaController.class);
     
     @Autowired
     private ServletContext servletContext;

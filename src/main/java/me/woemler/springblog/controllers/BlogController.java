@@ -3,6 +3,8 @@ package me.woemler.springblog.controllers;
 
 import me.woemler.springblog.models.BlogPost;
 import me.woemler.springblog.repositories.BlogRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,8 @@ import java.util.*;
 
 @Controller
 public class BlogController {
+
+    private static Logger logger  = LoggerFactory.getLogger(BlogController.class);
     
     @Autowired private BlogRepository blogRepository;
     

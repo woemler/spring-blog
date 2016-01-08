@@ -52,11 +52,13 @@
                     <input type="text" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
-
-                <c:choose><c:when test="${adminFlag}">
-                    <a id="logoutLink" class="btn btn-danger" href="${contextPath}/logout">Logout</a>
-                </c:when></c:choose>
             </form>
+            <c:choose><c:when test="${adminFlag}">
+                <form class="navbar-form navbar-right" action="/logout" method="post">
+                    <input type="submit" class="btn btn-danger" value="Logout" />
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                </form>
+            </c:when></c:choose>
         </div><!--/.navbar-collapse -->
     </div>
 </div>

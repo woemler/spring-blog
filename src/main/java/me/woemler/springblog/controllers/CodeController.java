@@ -2,6 +2,8 @@
 package me.woemler.springblog.controllers;
 
 import me.woemler.springblog.services.GitHubService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import java.util.Map;
 
 @Controller
 public class CodeController {
+
+    private static Logger logger  = LoggerFactory.getLogger(CodeController.class);
     
     @Autowired
     private GitHubService ghService;

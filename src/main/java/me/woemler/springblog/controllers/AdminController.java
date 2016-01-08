@@ -4,6 +4,8 @@ package me.woemler.springblog.controllers;
 import me.woemler.springblog.models.BlogPost;
 import me.woemler.springblog.repositories.BlogRepository;
 import org.pegdown.PegDownProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import java.util.*;
 @RequestMapping("/admin")
 @SessionAttributes("blogPost")
 public class AdminController {
+
+    private static Logger logger  = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired BlogRepository blogRepository;
 
