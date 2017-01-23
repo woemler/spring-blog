@@ -1,4 +1,5 @@
 <%@ taglib prefix="blog-tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <blog-tags:header />
 
@@ -17,11 +18,11 @@
                 <p id="${requestedPost.slug}-date" class="blog-date text-muted">${requestedPost.printPostDate()} GMT</p>
                 <p id="${requestedPost.slug}-tags" class="blog-tags">
                     Tags:&nbsp;
-                    <c:forEach items="${postTags}" var="tag">
-                        <a>${tag.tagName}</a>&nbsp;
+                    <c:forEach items="${requestedPost.tags}" var="tag">
+                        <a>${tag}</a>&nbsp;
                     </c:forEach>
                 </p>
-                <p id="${requestedPost.slug}-markup" class="blog-markup">${requestedPost.markup}</p>
+                <p id="${requestedPost.slug}-content" class="blog-content">${requestedPost.getMarkup()}</p>
 
                 <!--Pager-->
                 <ul class="pager">
@@ -48,7 +49,7 @@
                     <c:when test="${requestedPost.enableComments == true}">
                        <p id="${requestedPost.slug}-comments" class="blog-comments">
                             <h3>Comments</h3>
-                            <blog-tags:disqusComments />
+                            <%--<blog-tags:disqusComments />--%>
                         </p> 
                     </c:when>
                 </c:choose>

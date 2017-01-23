@@ -30,7 +30,7 @@ public class BlogController {
         @PageableDefault(size = 5, sort = {"postDate"}, direction = Sort.Direction.DESC) Pageable pageable,
         ModelMap map
     ) {
-        Page<BlogPost> posts = blogRepository.findAll(pageable);
+        Page<BlogPost> posts = blogRepository.findByStatusOrderByPostDateAsc(BlogPost.STATUS_ACTIVE, pageable);
         List<BlogPost> blogPosts = new ArrayList<>(posts.getContent());
         map.addAttribute("currentPage", pageable.getPageNumber() + 1);
         map.addAttribute("numPages", posts.getTotalPages());

@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <p>
-    <a class="btn btn-info btn-lg" href="https://github.com/willOEM/spring-blog" target="_blank">
+    <a class="btn btn-info btn-lg" href="https://github.com/woemler/spring-blog" target="_blank">
         <span class="glyphicon glyphicon-cloud-upload glyphicon"></span>
         Fork me on GitHub!
     </a>

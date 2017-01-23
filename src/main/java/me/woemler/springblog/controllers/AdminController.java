@@ -70,16 +70,14 @@ public class AdminController {
         if (result.hasErrors()){
             return "admin/editBlogPost";
         }
-        Set<String> tagSet = new HashSet();
+        Set<String> tagSet = new HashSet<>();
         for (String tag: tagString.split(",")){
             tag = tag.replaceAll("\\s+", "");
-            if (!tag.equals("") && tag != null){
+            if (tag != null && !tag.equals("")){
                 tagSet.add(tag);
             }
         }
-        if (enablePegdown){
-            blogPost.setMarkup(new PegDownProcessor().markdownToHtml(blogPost.getMarkup()));
-        }
+        blogPost.setEnablePegdown(enablePegdown);
         blogPost.setPostDate(new Date());
         blogPost.setTags(tagSet);
         blogRepository.save(blogPost);
@@ -123,7 +121,7 @@ public class AdminController {
             }
         }
         if (enablePegdown){
-            blogPost.setMarkup(new PegDownProcessor().markdownToHtml(blogPost.getMarkup()));
+            blogPost.setContent(new PegDownProcessor().markdownToHtml(blogPost.getContent()));
         }
         blogPost.setTags(tagSet);
         blogPost.setPostDate(new Date());

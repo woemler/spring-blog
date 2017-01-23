@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author woemler
  */
-public interface CustomBlogRepository {
+public interface BlogOperations {
 	List<String> findTagsByFragment(String fragment);
 	List<String> findAllTags();
 }

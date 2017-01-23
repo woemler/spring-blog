@@ -10,10 +10,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.jirutka.spring.embedmongo.EmbeddedMongoBuilder;
 
 /**
  * @author woemler
@@ -22,21 +26,16 @@ import java.util.List;
 @Configuration
 @Import({ TestApplicationConfig.class })
 @EnableMongoRepositories(basePackages = "me.woemler.springblog.repositories")
-public class TestDataSourceConfig extends AbstractMongoConfiguration {
-	
-	@Autowired private Environment env;
+public class TestDataSourceConfig {
 
-	@Override
-	public String getDatabaseName(){
-		return env.getRequiredProperty("mongo.name");
+	@Bean(destroyMethod = "close")
+	public Mongo mongo() throws IOException {
+		return new EmbeddedMongoBuilder().build();
 	}
 
-	@Override
 	@Bean
-	public Mongo mongo() throws Exception {
-		ServerAddress serverAddress = new ServerAddress(env.getRequiredProperty("mongo.host"));
-		List<MongoCredential> credentials = new ArrayList<>();
-		return new MongoClient(serverAddress, credentials);
+	public MongoTemplate mongoTemplate(Mongo mongo){
+		return new MongoTemplate(mongo, "blog-test");
 	}
 	
 }

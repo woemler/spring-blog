@@ -15,17 +15,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <script type="text/javascript" src="<c:url value="/static/js/jquery-1.10.2.min.js" />"></script>
-    <script type="text/javascript" src="<c:url value="/static/js/bootstrap.min.js" />"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css" />" type="text/css" />
-    <link rel="stylesheet" href="<c:url value="/static/css/blog-style.css" />" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="${contextPath}/static/css/blog-style.css" type="text/css" />
 
-    <style type="text/css"></style>
-
-    <script type="text/javascript" src="<c:url value="/static/js/less-1.5.0.min.js" />"></script>
-
-    <title>Spring Blog</title>
+    <title><spring:eval expression="@environment.getProperty('app.blog.title')" /></title>
 
 </head>
 <body>
@@ -38,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${contextPath}/" style="font-family:'Consolas';color:#cc4800">Spring Blog</a>
+            <a class="navbar-brand" href="${contextPath}/" style="font-family:'Consolas';color:#cc4800"><spring:eval expression="@environment.getProperty('app.blog.title')" /></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -63,8 +59,6 @@
     </div>
 </div>
 
-
-<!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
         <!--<div class="page-header">-->
@@ -76,9 +70,9 @@
             </c:when>
             <c:otherwise>
                 <div class="page-header">
-                    <h1>Spring Blog</h1>
+                    <h1><spring:eval expression="@environment.getProperty('app.blog.title')" /></h1>
                 </div>
-                <p><span class="pull-right text-muted">Fun with Spring Boot and MongoDB.</span></P>
+                <p><span class="pull-right text-muted"><spring:eval expression="@environment.getProperty('app.blog.subtitle')" /></span></p>
             </c:otherwise>
         </c:choose>
 

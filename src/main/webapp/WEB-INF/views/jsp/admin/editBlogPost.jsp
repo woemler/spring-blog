@@ -4,8 +4,8 @@
 
 <blog-tags:header />
 
-<link rel="stylesheet" href="<c:url value="${contextPath}/static/css/jquery-ui.css" />" type="text/css" />
-<link rel="stylesheet" href="<c:url value="${contextPath}/static/css/jquery.tagit.css" />" type="text/css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tag-it/2.0/css/jquery.tagit.css" type="text/css" />
 
 <div class="container"><!--Body content start-->
     <div class="row">
@@ -39,9 +39,9 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="markupInput">Markup</label>
                             <div class="col-lg-9">
-                                <form:textarea id="markupInput" path="markup" cssClass="form-control" cssErrorClass="error" rows="10" value="${blogPost.markup}" />                        
+                                <form:textarea id="markupInput" path="content" cssClass="form-control" cssErrorClass="error" rows="10" value="${blogPost.content}" />
                             </div>
-                            <form:errors path="markup" cssClass="help-inline spring-form-error" element="span" />
+                            <form:errors path="content" cssClass="help-inline spring-form-error" element="span" />
                         </div>
 
                         <!--Tags-->
@@ -60,14 +60,14 @@
                             <div class="col-lg-9">
                                 <form:select id="statusSelect" size="1" path="status" cssClass="form-control" value="${blogPost.status}">
                                     <form:option value="draft" label="Draft" />
-                                    <form:option value="live" label="Live" />
+                                    <form:option value="active" label="Active" />
                                 </form:select>                        
                             </div>
                             <form:errors path="status" cssClass="help-inline spring-form-error" element="span" />
                         </div>
 
                         <!--Enable Comments-->
-                        <label class="checkbox-inline" for="enableCommentsCheck">
+                        <label class="col-lg-offset-2 checkbox-inline" for="enableCommentsCheck">
                             <form:checkbox id="enableCommentsCheck" path="enableComments" value="${blogPost.enableComments}" />                    
                             Enable Comments
                         </label>
@@ -75,7 +75,8 @@
 
                         <!--Enable Pegdown-->
                         <label class="checkbox-inline" for="enablePegdownCheck">
-                            <input type="checkbox" id="enablePegdownCheck" name="enablePegdown" checked="checked" />                    
+                            <form:checkbox id="enablePegdownCheck" path="enablePegdown" value="${blogPost.enablePegdown}" />
+                            <%--<input type="checkbox" id="enablePegdownCheck" name="enablePegdown" checked="checked" />                    --%>
                             Enable Pegdown
                         </label>
                         
@@ -104,8 +105,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="<c:url value="${contextPath}/static/js/jquery-ui.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="${contextPath}/static/js/tag-it.min.js" />"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tag-it/2.0/js/tag-it.min.js"></script>
 
 <script type="text/javascript">
             
